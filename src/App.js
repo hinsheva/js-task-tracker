@@ -33,12 +33,14 @@ function App() {
     setTasks(tasks.filter((task)=>task.id !== id));
   }
 
+  const addTask = () => {}
+
   return (
     <div className='container'>
       <Header title="Task Tracker"/>
       <Button text="Add" color=""/>
       <Input />
-      <Tasks tasks={tasks} onDelete={deleteTask}/>
+      {tasks.length> 0 ? <Tasks tasks={tasks} onDelete={deleteTask}/> : <div style={{color:"snow"}}>'No tasks for now...'</div>}
     </div>
   );
 }
