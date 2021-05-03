@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import Button from './components/Button';
-import Input from './components/Input';
+import AddTask from './components/AddTask';
 import { useState } from 'react';
 
 
@@ -28,6 +28,12 @@ function App() {
     },
   ]);
 
+  const addTask = (task) => {
+    console.log("adding a task...", task)
+    const id = Math.floor(Math.random() * 1000 + 1);
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask])
+  }
 
   const deleteTask = (id) => {
     setTasks(tasks.filter((task)=>task.id !== id));
@@ -41,7 +47,7 @@ function App() {
     <div className='container'>
       <Header title="Task Tracker"/>
       <Button text="Add" color=""/>
-      <Input />
+      <AddTask onAdd={addTask}/>
       {tasks.length> 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : <div style={{color:"snow"}}>'No tasks for now...'</div>}
     </div>
   );
