@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
-import Button from './components/Button';
 import AddTask from './components/AddTask';
 import { useState } from 'react';
 
 
 function App() {
+  const [showAddTaskSection, setShowAddTaskSection] = useState(true);
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -46,8 +46,7 @@ function App() {
   return (
     <div className='container'>
       <Header title="Task Tracker"/>
-      <Button text="Add" color=""/>
-      <AddTask onAdd={addTask}/>
+      {showAddTaskSection && <AddTask onAdd={addTask}/>}
       {tasks.length> 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : <div style={{color:"snow"}}>'No tasks for now...'</div>}
     </div>
   );
