@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
-import { useState, useEffect } from 'react';
-
+import Footer from './components/Footer';
+import About from './components/About';
 
 function App() {
   const [showAddTaskSection, setShowAddTaskSection] = useState(false);
@@ -63,11 +65,19 @@ function App() {
   }
 
   return (
+    <Router>
     <div className='container'>
       <Header title="Task Tracker" onAddButtonClick={()=>setShowAddTaskSection(!showAddTaskSection)} showAddTaskSection={showAddTaskSection} />
-      {showAddTaskSection && <AddTask onAdd={addTask}/>}
-      {tasks.length> 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : <div style={{color:"snow"}}>'No tasks for now...'</div>}
+      <Route path="/" exact render={(props)=>(
+        <>
+          {showAddTaskSection && <AddTask onAdd={addTask}/>}
+          {tasks.length> 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : <div style={{color:"snow"}}>'No tasks for now...'</div>}
+        </>
+      )}/>
+      <Route path="/about" component={About}/>
+      <Footer />
     </div>
+    </Router>
   );
 }
 
