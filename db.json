@@ -3,7 +3,7 @@
     {
       "name": "Qui error ducimus facere provident enim ipsa.",
       "date": "2022-02-21 06:26:51",
-      "reminder": false,
+      "reminder": true,
       "id": 9
     },
     {
@@ -15,7 +15,7 @@
     {
       "name": "Magnam adipisci quis quasi est.",
       "date": "2021-08-14 07:25:44",
-      "reminder": false,
+      "reminder": true,
       "id": 11
     },
     {
