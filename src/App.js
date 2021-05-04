@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const [showAddTaskSection, setShowAddTaskSection] = useState(true);
+  const [showAddTaskSection, setShowAddTaskSection] = useState(false);
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -29,7 +29,6 @@ function App() {
   ]);
 
   const addTask = (task) => {
-    console.log("adding a task...", task)
     const id = Math.floor(Math.random() * 1000 + 1);
     const newTask = { id, ...task };
     setTasks([...tasks, newTask])
@@ -45,7 +44,7 @@ function App() {
 
   return (
     <div className='container'>
-      <Header title="Task Tracker"/>
+      <Header title="Task Tracker" onAddButtonClick={()=>setShowAddTaskSection(!showAddTaskSection)} showAddTaskSection={showAddTaskSection} />
       {showAddTaskSection && <AddTask onAdd={addTask}/>}
       {tasks.length> 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : <div style={{color:"snow"}}>'No tasks for now...'</div>}
     </div>
